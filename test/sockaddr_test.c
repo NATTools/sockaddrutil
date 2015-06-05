@@ -386,7 +386,7 @@ CTEST2 (addr, IPv6_copy)
 
 CTEST2 (addr, initFromString)
 {
-    #pragma unused (data)
+    (void)data;
     struct sockaddr_storage ip;
     
     ASSERT_FALSE( sockaddr_initFromString( (struct sockaddr *)&ip, "" ));
@@ -427,7 +427,7 @@ CTEST2 (addr, IPv6_setPort)
 
 CTEST2 (addr, IPv4_loopback)
 {
-    #pragma unused (data)
+    (void)data;
     struct sockaddr_storage ip;
     struct sockaddr_storage addr;
     addr.ss_family = 12;
@@ -438,7 +438,7 @@ CTEST2 (addr, IPv4_loopback)
 
 CTEST2 (addr, IPv6_loopback)
 {
-    #pragma unused (data)
+    (void)data;
     struct sockaddr_storage ip;
     sockaddr_initFromString( (struct sockaddr *)&ip, "::1" );
 
@@ -447,7 +447,7 @@ CTEST2 (addr, IPv6_loopback)
 
 CTEST2 (addr, IPv6_linklocal)
 {
-    #pragma unused (data)
+    (void)data;
     struct sockaddr_storage ip_link;
     struct sockaddr_storage ip_4;
     struct sockaddr_storage ip_6;
@@ -468,7 +468,7 @@ CTEST2 (addr, IPv6_linklocal)
 
 CTEST2 (addr, IPv6_sitelocal)
 {
-    #pragma unused (data)
+    (void)data;
     struct sockaddr_storage ip_link;
     struct sockaddr_storage ip_4;
     struct sockaddr_storage ip_6;
@@ -489,7 +489,7 @@ CTEST2 (addr, IPv6_sitelocal)
 
 CTEST2 (addr, IPv6_ula)
 {
-    #pragma unused (data)
+    (void)data;
     struct sockaddr_storage ip_link;
     struct sockaddr_storage ip_4;
     struct sockaddr_storage ip_6;
