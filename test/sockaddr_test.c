@@ -161,13 +161,12 @@ CTEST2(addr, IPv4_init)
     ASSERT_FALSE(sockaddr_initFromIPv4String((struct sockaddr_in *)&b_addr, "158.38.48.10.45.45.67.87:4556"));
 }
 
-/*
 
-START_TEST (test_sockaddr_int_IPv6_init)
+
+CTEST2 (addr, IPv6_init)
 {
 
     char addr_str[256];
-    char addr_str_small[4];
     uint8_t a[16] = {0x20, 0x1, 0x4, 0x70, 0xdc, 0x88, 0x0, 0x2, 0x2, 0x26, 0x18, 0xff, 0xfe, 0x92, 0x6d, 0x53};
     uint16_t port = 4567;
     struct sockaddr_storage a_addr;
@@ -175,27 +174,20 @@ START_TEST (test_sockaddr_int_IPv6_init)
 
     sockaddr_initFromIPv6Int((struct sockaddr_in6 *)&a_addr, a, htons(port));
 
-    fail_unless(sockaddr_initFromIPv6String((struct sockaddr_in6 *)&b_addr, "[2001:470:dc88:2:226:18ff:fe92:6d53]:4567"));
-
+    ASSERT_TRUE(sockaddr_initFromIPv6String((struct sockaddr_in6 *)&b_addr, "[2001:470:dc88:2:226:18ff:fe92:6d53]:4567"));
+    ASSERT_FALSE( sockaddr_alike( (struct sockaddr *)&a_addr, (struct sockaddr *)data->sockaddr_IPv6_1 ));
     sockaddr_toString( (struct sockaddr *)&a_addr,
                        addr_str,
                        256,
                        true);
 
-
-    fail_unless( sockaddr_alike( (struct sockaddr *)&a_addr, (struct sockaddr *)&b_addr) );
-
-
-    fail_if( sockaddr_initFromIPv6String((struct sockaddr_in6 *)&b_addr, "[2001:470:dc88:2:226:18ff:fe92:6d53"));
-
-    fail_if( sockaddr_initFromIPv6String((struct sockaddr_in6 *)&b_addr, "[2001:470:dc88:2:226:18ff:fe92:6d53:456]"));
-
-
-    fail_if( sockaddr_initFromIPv6String((struct sockaddr_in6 *)&b_addr, "2001:470:dc88:2:226:18ff:fe92:6d53:4567]:4567"));
-
+    ASSERT_TRUE( sockaddr_alike( (struct sockaddr *)&a_addr, (struct sockaddr *)&b_addr) );
+    ASSERT_FALSE( sockaddr_initFromIPv6String((struct sockaddr_in6 *)&b_addr, "[2001:470:dc88:2:226:18ff:fe92:6d53"));
+    ASSERT_FALSE( sockaddr_initFromIPv6String((struct sockaddr_in6 *)&b_addr, "[2001:470:dc88:2:226:18ff:fe92:6d53:456]"));
+    ASSERT_FALSE( sockaddr_initFromIPv6String((struct sockaddr_in6 *)&b_addr, "2001:470:dc88:2:226:18ff:fe92:6d53:4567]:4567"));
 }
-END_TEST
 
+/*
 START_TEST (sockaddr_IPv4_sameaddr)
 {
 
