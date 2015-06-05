@@ -175,6 +175,7 @@ bool sockaddr_isAddrSiteLocal(const struct sockaddr * sa);
  */
 bool sockaddr_isAddrULA(const struct sockaddr * sa);
 
+#if defined(__APPLE__)
 /*
  * Get IPv6 Flags. 
  * Will return 0 in case if failure or IPv4 addr
@@ -193,7 +194,7 @@ bool sockaddr_isAddrTemporary(const struct sockaddr * sa, const char* ifa_name, 
  * Will return false if it is a IPv4 addr
  */
 bool sockaddr_isAddrDeprecated(const struct sockaddr * sa, const char* ifa_name, int ifa_len);
-
+#endif
 /*
  * Converts a sockaddr to string
  * If add port is true the IPv6 string will contain [],

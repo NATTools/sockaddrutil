@@ -365,9 +365,9 @@ bool sockaddr_isAddrULA(const struct sockaddr * sa)
     return false;
 }
 
+#if defined(__APPLE__)
 int sockaddr_getIPv6Flags(const struct sockaddr * sa, const char* ifa_name, int ifa_len)
 {
-#if defined(__APPLE__)
     struct sockaddr_in6 *sin;
     struct in6_ifreq ifr6;
     int s6;
@@ -385,15 +385,12 @@ int sockaddr_getIPv6Flags(const struct sockaddr * sa, const char* ifa_name, int 
     }
     
     return ifr6.ifr_ifru.ifru_flags6;
-#else
-return 0;
-#endif
-}
 
+}
 
 bool sockaddr_isAddrTemporary(const struct sockaddr * sa, const char* ifa_name, int ifa_len)
 {
-#if defined(__APPLE__)
+
     int flags6;
 
     if (sa->sa_family == AF_INET) {
@@ -409,15 +406,11 @@ bool sockaddr_isAddrTemporary(const struct sockaddr * sa, const char* ifa_name, 
         }
     }
     return false;
-#else
-    return false;
-#endif
 }
 
 
 bool sockaddr_isAddrDeprecated(const struct sockaddr * sa, const char* ifa_name, int ifa_len)
 {
-#if defined(__APPLE__)
     int flags6;
 
     if (sa->sa_family == AF_INET) {
@@ -433,11 +426,8 @@ bool sockaddr_isAddrDeprecated(const struct sockaddr * sa, const char* ifa_name,
         }
     }
     return false;
-#else
-    return false;
-#endif
 }
-
+#endif
 
 
 
