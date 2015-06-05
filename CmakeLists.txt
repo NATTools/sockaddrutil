@@ -12,7 +12,7 @@ mark_as_advanced(SOCKADDRUTIL_VERSION_MAJOR SOCKADDRUTIL_VERSION_MINOR SOCKADDRU
 
 set ( SOCKADDRUTIL_VERSION "${SOCKADDRUTIL_VERSION_MAJOR}.${SOCKADDRUTIL_VERSION_MINOR}.${SOCKADDRUTIL_VERSION_PATCH}" )
 
-project ( "spudlib" VERSION "${SOCKADDRUTIL_VERSION}")
+project ( "sockaddrutil" VERSION "${SOCKADDRUTIL_VERSION}")
 
 find_package(Doxygen)
 
@@ -50,17 +50,17 @@ include ( CheckTypeSize )
 check_include_files ( stdint.h HAVE_STDINT_H )
 check_include_files ( stdlib.h HAVE_STDLIB_H )
 check_include_files ( stdbool.h HAVE_STDBOOL_H )
-check_function_exists ( arc4random HAVE_ARC4RANDOM )
+#check_function_exists ( arc4random HAVE_ARC4RANDOM )
 #check_library_exists ( pthread pthread_create "" HAVE_LIBPTHREAD )
 #check_library_exists ( m tan "" HAVE_LIBM )
 
 ## check for urandom
-if ( EXISTS "/dev/urandom" )
-  set ( HAVE__DEV_URANDOM 1 CACHE INTERNAL "/dev/urandom exists" )
-  message ( STATUS "Looking for /dev/urandom - found" )
-elseif ()
-  message ( STATUS "Looking for /dev/urandom - NOT FOUND" )
-endif ()
+#if ( EXISTS "/dev/urandom" )
+#  set ( HAVE__DEV_URANDOM 1 CACHE INTERNAL "/dev/urandom exists" )
+#  message ( STATUS "Looking for /dev/urandom - found" )
+#elseif ()
+#  message ( STATUS "Looking for /dev/urandom - NOT FOUND" )
+#endif ()
 
 configure_file ( ${CMAKE_CURRENT_SOURCE_DIR}/config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h )
 
@@ -93,8 +93,8 @@ endif ()
 ## include the parts
 add_subdirectory ( include )
 add_subdirectory ( src )
-## add_subdirectory ( test )
-## add_subdirectory ( samplecode )
+add_subdirectory ( test )
+
 
 install (FILES AUTHORS LICENSE README.md DESTINATION .)
 
