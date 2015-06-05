@@ -107,8 +107,6 @@ CTEST_SETUP(addr)
     sockaddr_initAsIPv6Any((struct sockaddr_in6 *)data->sockaddr_IPv6_any_2);
 }
 
-
-
 CTEST_TEARDOWN(addr)
 {
     free(data->sockaddr_IPv4_1);
@@ -125,17 +123,12 @@ CTEST_TEARDOWN(addr)
     free(data->sockaddr_IPv6_any_2);
 }
 
-
-
 CTEST2(addr, create )
 {
     ASSERT_TRUE( ((struct sockaddr *)data->sockaddr_IPv4_1)->sa_family == AF_INET);
-               
     ASSERT_TRUE( ((struct sockaddr *)data->sockaddr_IPv6_1)->sa_family == AF_INET6);
-    
     ASSERT_TRUE( ((struct sockaddr *)data->sockaddr_IPv6_2)->sa_family == AF_INET6);
 }
-
 
 CTEST2(addr, IPv4_init)
 {
@@ -145,7 +138,6 @@ CTEST2(addr, IPv4_init)
     uint16_t port = 4567;
     struct sockaddr_storage a_addr;
     struct sockaddr_storage b_addr;
-
 
     sockaddr_initFromIPv4Int((struct sockaddr_in *)&a_addr, htonl(a), htons(port));
     sockaddr_initFromIPv4String((struct sockaddr_in *)&b_addr, "158.38.48.10:4567");
@@ -187,33 +179,27 @@ CTEST2 (addr, IPv6_init)
     ASSERT_FALSE( sockaddr_initFromIPv6String((struct sockaddr_in6 *)&b_addr, "2001:470:dc88:2:226:18ff:fe92:6d53:4567]:4567"));
 }
 
-/*
-START_TEST (sockaddr_IPv4_sameaddr)
+
+CTEST2 (addr, sockaddr_IPv4_sameaddr)
 {
 
-    fail_unless( sockaddr_sameAddr((struct sockaddr *)sockaddr_IPv4_1,
-                                   (struct sockaddr *)sockaddr_IPv4_1),
-                 "samaddr failed");
-
-    fail_unless( sockaddr_sameAddr((struct sockaddr *)sockaddr_IPv4_1,
-                                   (struct sockaddr *)sockaddr_IPv4_3),
-                 "samaddr failed");
-
-    fail_unless( sockaddr_sameAddr((struct sockaddr *)sockaddr_IPv4_any,
-                                   (struct sockaddr *)sockaddr_IPv4_any_2),
-                 "samaddr failed");
-
-
-    fail_if   ( sockaddr_sameAddr((struct sockaddr *)sockaddr_IPv4_1,
-                                  (struct sockaddr *)sockaddr_IPv4_2),
-                  "samaddr failed");
-
-    fail_if   ( sockaddr_sameAddr((struct sockaddr *)sockaddr_IPv4_1,
-                                  (struct sockaddr *)sockaddr_IPv6_1 ),
-                "sameaddr failed");
+    ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_1,
+                                   (struct sockaddr *)data->sockaddr_IPv4_1));
+    
+    ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_1,
+                                   (struct sockaddr *)data->sockaddr_IPv4_3));
+    
+    ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_any,
+                                   (struct sockaddr *)data->sockaddr_IPv4_any_2));
+    
+    ASSERT_FALSE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_1,
+                                    (struct sockaddr *)data->sockaddr_IPv4_2));
+                
+    ASSERT_FALSE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_1,
+                                    (struct sockaddr *)data->sockaddr_IPv6_1 ));
 }
-END_TEST
 
+/*
 START_TEST (sockaddr_IPv6_sameaddr)
 {
 
