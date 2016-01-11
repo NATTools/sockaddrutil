@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/NPPT/sockaddrutil.svg?branch=master)](https://travis-ci.org/NPPT/sockaddrutil)
-[![Coverage Status](https://coveralls.io/repos/NPPT/sockaddrutil/badge.svg?branch=master)](https://coveralls.io/r/NPPT/sockaddrutil?branch=master)
+[![Build Status](https://travis-ci.org/NATTools/sockaddrutil.svg?branch=master)](https://travis-ci.org/NPPT/sockaddrutil)
+[![Coverage Status](https://coveralls.io/repos/MATTools/sockaddrutil/badge.svg?branch=master)](https://coveralls.io/r/NPPT/sockaddrutil?branch=master)
 
 # Sockaddrutil
-Idea is to make it a little less painfull to work with sockaddr and friends. 
+Idea is to make it a little less painfull to work with sockaddr and friends.
 
 ## Compiling
 

@@ -2,7 +2,6 @@
 #
 # Compiling/running tests
 
-
 set ( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${dist_dir}/test )
 
 function (sa_test name)
