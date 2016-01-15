@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/NATTools/sockaddrutil.svg?branch=master)](https://travis-ci.org/NATTools/sockaddrutil)
-[![Coverage Status](https://coveralls.io/repos/MATTools/sockaddrutil/badge.svg?branch=master)](https://coveralls.io/r/NATTools/sockaddrutil?branch=master)
+[![Coverage Status](https://coveralls.io/repos/NATTools/sockaddrutil/badge.svg?branch=master)](https://coveralls.io/r/NATTools/sockaddrutil?branch=master)
 
 # Sockaddrutil
 Idea is to make it a little less painfull to work with sockaddr and friends.
@@ -40,20 +40,12 @@ To manually generate lcov reports you can run the ./coveragereport.sh script.
 A nice html page can be found in lcov/index.html
 
 It can be a bit tricky to get your favorite platform to support gcov and
-friends, but do not give up! (I had problems on os-x, but unfortunately I do not
-remember how it was fixed)
+friends, but do not give up! (OS-X, clang and friends are tricky)
 
 ### Coding Standard
 
-TODO: make this more formal.
-
-We like to do C90/C99ish style. Will make sure the library compile on most platforms.
-
-Braces can be placed where you want them. But try to be consistent..
-
-White-spaces when committing should be avoided. (Usual rant on diffs and
-readability)
-
+Using uncrustify to clean up code. There is a uncrustify.cfg file that describes
+the format. Run uncrustify before posting pull requests.
 ## Contributing
 
 Fork and send pull requests.  Please add your name to the AUTHORS list in your
