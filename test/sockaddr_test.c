@@ -29,19 +29,19 @@ CTEST_DATA(addr)
     struct sockaddr_storage  *sockaddr_IPv4_2;
     struct sockaddr_storage  *sockaddr_IPv4_3;
     struct sockaddr_storage  *sockaddr_IPv4_4;
-    
+
     struct sockaddr_storage  *sockaddr_IPv6_1;
     struct sockaddr_storage  *sockaddr_IPv6_2;
     struct sockaddr_storage  *sockaddr_IPv6_3;
     struct sockaddr_storage  *sockaddr_IPv6_4;
-    
+
     struct sockaddr_storage  *sockaddr_uninit;
-    
+
     struct sockaddr_storage  *sockaddr_IPv4_any;
     struct sockaddr_storage  *sockaddr_IPv4_any_2;
     struct sockaddr_storage  *sockaddr_IPv6_any;
     struct sockaddr_storage  *sockaddr_IPv6_any_2;
-    
+
 };
 
 
@@ -171,16 +171,16 @@ CTEST2 (addr, IPv4_sameaddr)
 
     ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_1,
                                    (struct sockaddr *)data->sockaddr_IPv4_1));
-    
+
     ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_1,
                                    (struct sockaddr *)data->sockaddr_IPv4_3));
-    
+
     ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_any,
                                    (struct sockaddr *)data->sockaddr_IPv4_any_2));
-    
+
     ASSERT_FALSE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_1,
                                     (struct sockaddr *)data->sockaddr_IPv4_2));
-                
+
     ASSERT_FALSE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv4_1,
                                     (struct sockaddr *)data->sockaddr_IPv6_1 ));
 }
@@ -191,22 +191,22 @@ CTEST2 (addr, IPv6_sameaddr)
 
     ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv6_1,
                                    (struct sockaddr *)data->sockaddr_IPv6_1));
-                
+
     ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv6_3,
                                    (struct sockaddr *)data->sockaddr_IPv6_3));
-                
+
     ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv6_1,
                                    (struct sockaddr *)data->sockaddr_IPv6_3));
-                
+
     ASSERT_TRUE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv6_any,
                                    (struct sockaddr *)data->sockaddr_IPv6_any_2));
-                
+
     ASSERT_FALSE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv6_1,
                                   (struct sockaddr *)data->sockaddr_IPv6_2));
-                
+
     ASSERT_FALSE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv6_1,
                                   (struct sockaddr *)data->sockaddr_IPv6_2));
-                
+
     ASSERT_FALSE( sockaddr_sameAddr((struct sockaddr *)data->sockaddr_IPv6_1,
                                   (struct sockaddr *)data->sockaddr_IPv4_1 ));
 }
@@ -216,13 +216,13 @@ CTEST2 (addr, IPv4_sameport)
 {
     ASSERT_TRUE( sockaddr_samePort( (struct sockaddr *)data->sockaddr_IPv4_1,
                                     (struct sockaddr *)data->sockaddr_IPv4_1));
-               
+
     ASSERT_TRUE( sockaddr_samePort( (struct sockaddr *)data->sockaddr_IPv4_1,
                                     (struct sockaddr *)data->sockaddr_IPv4_2));
-               
+
     ASSERT_FALSE( sockaddr_samePort( (struct sockaddr *)data->sockaddr_IPv4_1,
                                      (struct sockaddr *)data->sockaddr_IPv4_4));
-              
+
     ASSERT_FALSE( sockaddr_samePort( (struct sockaddr *)data->sockaddr_IPv4_1,
                                      (struct sockaddr *)data->sockaddr_IPv6_4));
 }
@@ -245,7 +245,7 @@ CTEST2 (addr, IPv4_alike)
 {
     ASSERT_TRUE( sockaddr_alike((struct sockaddr *)data->sockaddr_IPv4_1,
                                 (struct sockaddr *)data->sockaddr_IPv4_1));
-              
+
     ASSERT_FALSE( sockaddr_alike((struct sockaddr *)data->sockaddr_IPv4_1,
                                  (struct sockaddr *)data->sockaddr_IPv4_2));
 }
@@ -255,7 +255,7 @@ CTEST2 (addr, IPv6_alike)
 {
     ASSERT_TRUE( sockaddr_alike((struct sockaddr *)data->sockaddr_IPv6_1,
                                 (struct sockaddr *)data->sockaddr_IPv6_1));
-    
+
     ASSERT_FALSE( sockaddr_alike((struct sockaddr *)data->sockaddr_IPv6_1,
                                  (struct sockaddr *)data->sockaddr_IPv6_2));
 }
@@ -268,7 +268,7 @@ CTEST2 (addr, IPv4_isSet)
 CTEST2 (addr, IPv6_isSet)
 {
     ASSERT_TRUE( sockaddr_isSet((struct sockaddr *)data->sockaddr_IPv6_1));
-              
+
     ASSERT_FALSE( sockaddr_isSet((struct sockaddr *)data->sockaddr_uninit));
 }
 
@@ -378,17 +378,17 @@ CTEST2 (addr, IPv6_copy)
 
     ASSERT_TRUE( sockaddr_alike((struct sockaddr *)&copy,
                                 (struct sockaddr *)data->sockaddr_IPv6_1));
-              
+
     ASSERT_FALSE( sockaddr_alike((struct sockaddr *)&copy,
                                  (struct sockaddr *)data->sockaddr_IPv6_2));
-              
+
 }
 
 CTEST2 (addr, initFromString)
 {
     (void)data;
     struct sockaddr_storage ip;
-    
+
     ASSERT_FALSE( sockaddr_initFromString( (struct sockaddr *)&ip, "" ));
     ASSERT_FALSE( sockaddr_initFromString( (struct sockaddr *)&ip, "1.2.3.4.5" ));
 }
@@ -402,7 +402,7 @@ CTEST2 (addr, IPv4_setPort)
 
     ASSERT_TRUE( sockaddr_alike((struct sockaddr *)&ip,
                                 (struct sockaddr *)data->sockaddr_IPv4_1));
-              
+
     sockaddr_setPort( (struct sockaddr *)&ip, 1111 );
 
     ASSERT_FALSE( sockaddr_alike((struct sockaddr *)&ip,
@@ -525,11 +525,11 @@ CTEST2 (addr, IPv4_private)
     struct sockaddr_storage addr_10, addr_10_l, addr_10_h;
     struct sockaddr_storage addr_172, addr_172_l, addr_172_h;;
     struct sockaddr_storage addr_public;
-    
+
     sockaddr_initFromString( (struct sockaddr *)&addr_192,  "192.168.2.10:3456");
     sockaddr_initFromString( (struct sockaddr *)&addr_192_l,  "192.168.0.0:3456");
     sockaddr_initFromString( (struct sockaddr *)&addr_192_h,  "192.168.255.255:3456");
-    
+
     sockaddr_initFromString( (struct sockaddr *)&addr_172,  "172.16.31.5:4534");
     sockaddr_initFromString( (struct sockaddr *)&addr_172_l,  "172.16.0.0:4534");
     sockaddr_initFromString( (struct sockaddr *)&addr_172_h,  "172.31.255.255:4534");
@@ -547,11 +547,24 @@ CTEST2 (addr, IPv4_private)
     ASSERT_TRUE( sockaddr_isAddrPrivate( (struct sockaddr *)&addr_172 ) );
     ASSERT_TRUE( sockaddr_isAddrPrivate( (struct sockaddr *)&addr_172_l ) );
     ASSERT_TRUE( sockaddr_isAddrPrivate( (struct sockaddr *)&addr_172_h ) );
-    
+
     ASSERT_TRUE( sockaddr_isAddrPrivate( (struct sockaddr *)&addr_10 ) );
     ASSERT_TRUE( sockaddr_isAddrPrivate( (struct sockaddr *)&addr_10_l ) );
     ASSERT_TRUE( sockaddr_isAddrPrivate( (struct sockaddr *)&addr_10_h ) );
 
     ASSERT_FALSE( sockaddr_isAddrPrivate( (struct sockaddr *)&addr_public ) );
     ASSERT_FALSE( sockaddr_isAddrPrivate( (struct sockaddr *)data->sockaddr_IPv6_1 ) );
+}
+
+CTEST ( sockaddr, reset )
+{
+  struct sockaddr_storage addr;
+  sockaddr_initFromString( (struct sockaddr *)&addr,  "192.168.2.10:3456");
+
+  ASSERT_TRUE( ((struct sockaddr *)&addr)->sa_family == AF_INET);
+
+  sockaddr_reset( &addr);
+
+  ASSERT_TRUE( ((struct sockaddr *)&addr)->sa_family == AF_UNSPEC);
+
 }

@@ -1,6 +1,12 @@
 [![Build Status](https://travis-ci.org/NATTools/sockaddrutil.svg?branch=master)](https://travis-ci.org/NATTools/sockaddrutil)
 [![Coverage Status](https://coveralls.io/repos/NATTools/sockaddrutil/badge.svg?branch=master)](https://coveralls.io/r/NATTools/sockaddrutil?branch=master)
 
+<a href="https://scan.coverity.com/projects/nattools-sockaddrutil">
+  <img alt="Coverity Scan Build Status"
+       src="https://scan.coverity.com/projects/7586/badge.svg"/>
+</a>
+
+
 # Sockaddrutil
 Idea is to make it a little less painfull to work with sockaddr and friends.
 
