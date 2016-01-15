@@ -2,7 +2,6 @@
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/7586/badge.svg)](https://scan.coverity.com/projects/nattools-sockaddrutil)
 [![Coverage Status](https://coveralls.io/repos/NATTools/sockaddrutil/badge.svg?branch=master&service=github)](https://coveralls.io/github/NATTools/sockaddrutil?branch=master)
 
-
 # Sockaddrutil
 Idea is to make it a little less painfull to work with sockaddr and friends.
 
