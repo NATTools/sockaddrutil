@@ -3,12 +3,18 @@
 # top level build file for the sockaddrutil library
 
 ## prepare CMAKE
-cmake_minimum_required ( VERSION 3.0.0 )
+cmake_minimum_required ( VERSION 3.2.0 )
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+include ( Uncrustify )
+include ( GetGitRevisionDescription )
+git_describe(VERSION --tags --dirty=-d)
 
-set ( SOCKADDRUTIL_VERSION_MAJOR 0 CACHE STRING "Project major version number")
-set ( SOCKADDRUTIL_VERSION_MINOR "3" CACHE STRING "Project minor version number" )
-set ( SOCKADDRUTIL_VERSION_PATCH "0" CACHE STRING "Project patch version number" )
-mark_as_advanced(SOCKADDRUTIL_VERSION_MAJOR SOCKADDRUTIL_VERSION_MINOR SOCKADDRUTIL_VERSION_PATCH)
+string(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" SOCKADDRUTIL_VERSION_MAJOR "${VERSION}")
+string(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" SOCKADDRUTIL_VERSION_MINOR "${VERSION}")
+string(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" SOCKADDRUTIL_VERSION_PATCH "${VERSION}")
+string(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.[0-9]+(.*)" "\\1" SOCKADDRUTIL_VERSION_SHA1 "${VERSION}")
+
+mark_as_advanced(SOCKADDRUTIL_VERSION_MAJOR SOCKADDRUTIL_VERSION_MINOR SOCADDRUTIL_VERSION_PATCH)
 
 set ( SOCKADDRUTIL_VERSION "${SOCKADDRUTIL_VERSION_MAJOR}.${SOCKADDRUTIL_VERSION_MINOR}.${SOCKADDRUTIL_VERSION_PATCH}" )
 
@@ -23,6 +29,7 @@ option ( fatal_warnings "Treat build warnings as errors" ON )
 option ( coveralls "Generate coveralls data" ON )
 option ( coveralls_send "Send data to coveralls site" OFF )
 option ( build_docs "Create docs using Doxygen" ${DOXYGEN_FOUND} )
+option ( uncrustify "Uncrustify the source code" ${UNCRUSTIFY_FOUND} )
 
 set ( dist_dir    ${CMAKE_BINARY_DIR}/dist )
 set ( prefix      ${CMAKE_INSTALL_PREFIX} )
@@ -50,17 +57,7 @@ include ( CheckTypeSize )
 check_include_files ( stdint.h HAVE_STDINT_H )
 check_include_files ( stdlib.h HAVE_STDLIB_H )
 check_include_files ( stdbool.h HAVE_STDBOOL_H )
-#check_function_exists ( arc4random HAVE_ARC4RANDOM )
-#check_library_exists ( pthread pthread_create "" HAVE_LIBPTHREAD )
-#check_library_exists ( m tan "" HAVE_LIBM )
 
-## check for urandom
-#if ( EXISTS "/dev/urandom" )
-#  set ( HAVE__DEV_URANDOM 1 CACHE INTERNAL "/dev/urandom exists" )
-#  message ( STATUS "Looking for /dev/urandom - found" )
-#elseif ()
-#  message ( STATUS "Looking for /dev/urandom - NOT FOUND" )
-#endif ()
 
 configure_file ( ${CMAKE_CURRENT_SOURCE_DIR}/config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h )
 
@@ -125,9 +122,9 @@ set ( CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE" )
 
 include ( CPack )
 include ( CTest )
-
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
 include ( LCov )
+
+UncrustifyTop(${uncrustify})
 
 if (build_docs)
     if(NOT DOXYGEN_FOUND)

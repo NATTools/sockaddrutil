@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/NATTools/sockaddrutil.svg?branch=master)](https://travis-ci.org/NATTools/sockaddrutil)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/7586/badge.svg)](https://scan.coverity.com/projects/nattools-sockaddrutil)
 [![Coverage Status](https://coveralls.io/repos/NATTools/sockaddrutil/badge.svg?branch=master&service=github)](https://coveralls.io/github/NATTools/sockaddrutil?branch=master)
+[![GitHub version](https://badge.fury.io/gh/NATTools%2Fsockaddrutil.svg)](https://github.com/NATTools/sockaddrutil/releases)
 
 # Sockaddrutil
 Idea is to make it a little less painfull to work with sockaddr and friends.
@@ -19,14 +20,14 @@ against in build/dist/lib.
 
 ## Development
 
-You need to have [cmake](http://www.cmake.org/ to build.
+You need to have [cmake](http://www.cmake.org/) to build.
 Note that version 3.2 or newer is needed. (Some linux distributions are a bit slow to update, so manuall install may be needed.)
 
 ### Unit Tests
 
 Build and run the checks with
 
-    make test
+    make -C build test
 
 If tests fail it can help to run the binaries in `build/dist/test` to see where
 they fail.
@@ -47,6 +48,9 @@ friends, but do not give up! (OS-X, clang and friends are tricky)
 
 Using uncrustify to clean up code. There is a uncrustify.cfg file that describes
 the format. Run uncrustify before posting pull requests.
+
+[Semantic versioning](http://semver.org/) is used.
+
 ## Contributing
 
 Fork and send pull requests.  Please add your name to the AUTHORS list in your
