@@ -384,6 +384,13 @@ sockaddr_isAddrLinkLocal(const struct sockaddr* sa)
 {
   if (sa->sa_family == AF_INET)
   {
+    uint32_t link_169 = 0xA9FE0000;
+    uint32_t mask_16     = 0xFFFF0000;
+    if ( (htonl( ( (struct sockaddr_in*)sa )->sin_addr.s_addr ) & mask_16) ==
+         link_169 )
+    {
+      return true;
+    }
     return false;
   }
   else if (sa->sa_family == AF_INET6)
