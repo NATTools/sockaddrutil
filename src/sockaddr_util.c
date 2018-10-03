@@ -10,8 +10,11 @@
 #include <netinet/in.h>
 
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) && defined(__MACH__)
+#include <TargetConditionals.h>
+#if TARGET_OS_OSX == 1
 #include <netinet/in_var.h>
+#endif
 #endif
 
 
@@ -432,7 +435,9 @@ sockaddr_isAddrULA(const struct sockaddr* sa)
   return false;
 }
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) && defined(__MACH__)
+#include <TargetConditionals.h>
+#if TARGET_OS_OSX == 1
 int
 sockaddr_getIPv6Flags(const struct sockaddr* sa,
                       const char*            ifa_name,
@@ -517,6 +522,7 @@ sockaddr_isAddrDeprecated(const struct sockaddr* sa,
   }
   return false;
 }
+#endif
 #endif
 
 
