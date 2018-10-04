@@ -166,7 +166,9 @@ sockaddr_isAddrSiteLocal(const struct sockaddr* sa);
 bool
 sockaddr_isAddrULA(const struct sockaddr* sa);
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) && defined(__MACH__)
+#include <TargetConditionals.h>
+#if TARGET_OS_OSX == 1
 /*
  * Get IPv6 Flags.
  * Will return 0 in case if failure or IPv4 addr
@@ -194,6 +196,7 @@ bool
 sockaddr_isAddrDeprecated(const struct sockaddr* sa,
                           const char*            ifa_name,
                           int                    ifa_len);
+#endif
 #endif
 /*
  * Converts a sockaddr to string
